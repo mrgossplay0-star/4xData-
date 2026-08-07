@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#111827">
+
+  <title>4X DATA V36</title>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- =========================
+       EN-TÊTE
+  ========================== -->
+  <header class="topbar">
+    <div>
+      <h1>⚡ 4X DATA V36</h1>
+      <p>Réseau social • Data • Essai 39H</p>
+    </div>
+
+    <button id="adminButton" class="admin-button">
+      👑 ADMIN
+    </button>
+  </header>
+
+
+  <!-- =========================
+       PAGE PRINCIPALE
+  ========================== -->
+  <main id="app">
+
+    <!-- ACCUEIL -->
+    <section id="homeSection" class="section">
+
+      <div class="hero card">
+        <h2>Bienvenue sur 4X DATA</h2>
+        <p>
+          Rejoins le réseau social et découvre les services
+          proposés par 4X DATA.
+        </p>
+
+        <button id="startButton" class="primary-button">
+          🚀 COMMENCER
+        </button>
+      </div>
+
+
+      <!-- SERVICES -->
+      <div class="card">
+        <h2>📱 Services 4X DATA</h2>
+
+        <div class="service-grid">
+
+          <div class="service-card">
+            <span>📶</span>
+            <h3>x6 DATA</h3>
+            <p>
+              Service de données mobiles.
+            </p>
+            <button class="service-button" data-service="data">
+              EN SAVOIR PLUS
+            </button>
+          </div>
+
+          <div class="service-card">
+            <span>⏱️</span>
+            <h3>39H ESSAI</h3>
+            <p>
+              Découvre le service pendant la période d'essai.
+            </p>
+            <button class="service-button" data-service="trial">
+              ESSAI 39H
+            </button>
+          </div>
+
+          <div class="service-card">
+            <span>👥</span>
+            <h3>RÉSEAU SOCIAL</h3>
+            <p>
+              Publie et consulte les publications.
+            </p>
+            <button class="service-button" data-service="social">
+              OUVRIR
+            </button>
+          </div>
+
+        </div>
+      </div>
+
+
+      <!-- CONNEXION -->
+      <div id="authCard" class="card">
+
+        <h2>👤 Mon compte</h2>
+
+        <div id="loggedOut">
+
+          <input
+            id="loginPhone"
+            type="tel"
+            placeholder="Numéro de téléphone">
+
+          <input
+            id="loginPassword"
+            type="password"
+            placeholder="Mot de passe">
+
+          <button id="loginButton" class="primary-button">
+            🔐 SE CONNECTER
+          </button>
+
+          <button id="registerButton" class="secondary-button">
+            ✨ CRÉER UN COMPTE
+          </button>
+
+          <p id="authMessage" class="message"></p>
+
+        </div>
+
+
+        <div id="loggedIn" class="hidden">
+
+          <div class="profile-box">
+
+            <div class="avatar">👤</div>
+
+            <div>
+              <strong id="userName">
+                Utilisateur
+              </strong>
+
+              <p id="userPhone"></p>
+            </div>
+
+          </div>
+
+          <div class="balance-box">
+
+            <span>Solde</span>
+
+            <strong id="userBalance">
+              0 FCFA
+            </strong>
+
+          </div>
+
+          <button id="logoutButton" class="danger-button">
+            🚪 SE DÉCONNECTER
+          </button>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         RÉSEAU SOCIAL
+    ========================== -->
+    <section id="socialSection" class="section hidden">
+
+      <div class="card">
+
+        <h2>🌍 RÉSEAU SOCIAL 4X</h2>
+
+        <textarea
+          id="postContent"
+          placeholder="Que voulez-vous publier ?">
+        </textarea>
+
+        <button id="publishButton" class="primary-button">
+          📢 PUBLIER
+        </button>
+
+        <p id="postMessage" class="message"></p>
+
+      </div>
+
+
+      <div class="card">
+
+        <h2>📰 Publications</h2>
+
+        <div id="postsContainer">
+
+          <div class="empty-state">
+            Aucune publication pour le moment.
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         DATA
+    ========================== -->
+    <section id="dataSection" class="section hidden">
+
+      <div class="card">
+
+        <h2>📶 x6 DATA</h2>
+
+        <p>
+          Les offres de données mobiles seront affichées ici.
+        </p>
+
+        <div class="data-offer">
+
+          <h3>⚡ Offre 4X DATA</h3>
+
+          <p>
+            Consulte les offres disponibles.
+          </p>
+
+          <button id="dataOfferButton" class="primary-button">
+            VOIR LES OFFRES
+          </button>
+
+        </div>
+
+        <p id="dataMessage" class="message"></p>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         ESSAI 39H
+    ========================== -->
+    <section id="trialSection" class="section hidden">
+
+      <div class="card">
+
+        <h2>⏱️ ESSAI 39 HEURES</h2>
+
+        <p>
+          Active ta période d'essai.
+        </p>
+
+        <div id="trialStatus" class="trial-status">
+          Essai non activé
+        </div>
+
+        <button id="activateTrialButton" class="primary-button">
+          ⚡ ACTIVER MON ESSAI
+        </button>
+
+        <p id="trialMessage" class="message"></p>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         ADMIN
+    ========================== -->
+    <section id="adminSection" class="section hidden">
+
+      <div class="card admin-card">
+
+        <h2>👑 ESPACE SUPER ADMIN</h2>
+
+        <!-- CONNEXION ADMIN -->
+        <div id="adminLogin">
+
+          <p>
+            Accès réservé à l'administrateur.
+          </p>
+
+          <input
+            id="adminCode"
+            type="password"
+            inputmode="numeric"
+            placeholder="Code administrateur">
+
+          <button id="adminLoginButton" class="admin-login-button">
+            🔐 ACCÉDER
+          </button>
+
+          <p id="adminLoginMessage" class="message"></p>
+
+        </div>
+
+
+        <!-- TABLEAU DE BORD ADMIN -->
+        <div id="adminDashboard" class="hidden">
+
+          <div class="admin-header">
+
+            <div>
+              <span>Administrateur</span>
+              <strong>SUPER ADMIN</strong>
+            </div>
+
+            <button id="adminLogoutButton" class="danger-button">
+              FERMER
+            </button>
+
+          </div>
+
+
+          <!-- SOLDE -->
+          <div class="admin-balance">
+
+            <span>Solde Total</span>
+
+            <strong id="adminBalance">
+              0 FCFA
+            </strong>
+
+          </div>
+
+
+          <!-- STATISTIQUES -->
+          <div class="stats-grid">
+
+            <div class="stat-card">
+              <span>👥</span>
+              <strong id="totalUsers">0</strong>
+              <small>Utilisateurs</small>
+            </div>
+
+            <div class="stat-card">
+              <span>📝</span>
+              <strong id="totalPosts">0</strong>
+              <small>Publications</small>
+            </div>
+
+            <div class="stat-card">
+              <span>💰</span>
+              <strong id="totalTransactions">0</strong>
+              <small>Transactions</small>
+            </div>
+
+          </div>
+
+
+          <!-- ACTIONS -->
+          <div class="admin-actions">
+
+            <button id="withdrawButton" class="danger-button">
+              💸 RETIRER ARGENT
+            </button>
+
+            <button id="adminUsersButton" class="secondary-button">
+              👥 UTILISATEURS
+            </button>
+
+            <button id="adminPostsButton" class="secondary-button">
+              📰 PUBLICATIONS
+            </button>
+
+            <button id="adminTransactionsButton" class="secondary-button">
+              💳 TRANSACTIONS
+            </button>
+
+          </div>
+
+
+          <!-- PANNEAU ADMIN -->
+          <div id="adminContent" class="admin-content">
+
+            <h3>📊 Tableau de bord</h3>
+
+            <p>
+              Sélectionne une action ci-dessus.
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- =========================
+       NAVIGATION
+  ========================== -->
+  <nav class="bottom-nav">
+
+    <button data-section="homeSection">
+      🏠
+      <span>Accueil</span>
+    </button>
+
+    <button data-section="socialSection">
+      🌍
+      <span>Social</span>
+    </button>
+
+    <button data-section="dataSection">
+      📶
+      <span>Data</span>
+    </button>
+
+    <button data-section="trialSection">
+      ⏱️
+      <span>Essai</span>
+    </button>
+
+  </nav>
+
+
+  <!-- =========================
+       MODAL INSCRIPTION
+  ========================== -->
+  <div id="registerModal" class="modal hidden">
+
+    <div class="modal-content">
+
+      <button id="closeRegister" class="close-button">
+        ✕
+      </button>
+
+      <h2>✨ Créer un compte</h2>
+
+      <input
+        id="registerName"
+        type="text"
+        placeholder="Nom">
+
+      <input
+        id="registerPhone"
+        type="tel"
+        placeholder="Numéro de téléphone">
+
+      <input
+        id="registerPassword"
+        type="password"
+        placeholder="Créer un mot de passe">
+
+      <button id="createAccountButton" class="primary-button">
+        CRÉER MON COMPTE
+      </button>
+
+      <p id="registerMessage" class="message"></p>
+
+    </div>
+
+  </div>
+
+
+  <!-- =========================
+       MODAL RETRAIT
+  ========================== -->
+  <div id="withdrawModal" class="modal hidden">
+
+    <div class="modal-content">
+
+      <button id="closeWithdraw" class="close-button">
+        ✕
+      </button>
+
+      <h2>💸 Retrait</h2>
+
+      <input
+        id="withdrawAmount"
+        type="number"
+        placeholder="Montant en FCFA">
+
+      <input
+        id="withdrawNumber"
+        type="tel"
+        placeholder="Numéro Mobile Money">
+
+      <button id="confirmWithdraw" class="primary-button">
+        ENVOYER LA DEMANDE
+      </button>
+
+      <p id="withdrawMessage" class="message"></p>
+
+    </div>
+
+  </div>
+
+
+  <!-- =========================
+       JAVASCRIPT
+  ========================== -->
+
+  <!-- Configuration Firebase -->
+  <script type="module" src="firebase-config.js"></script>
+
+  <!-- Application -->
+  <script type="module" src="app.js"></script>
+
+</body>
+</html>
